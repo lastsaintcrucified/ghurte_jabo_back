@@ -103,7 +103,7 @@ const signUp = async (req, res, next) => {
         userId: createdUser.id,
         email: createdUser.email,
       },
-      "secret_within_secret",
+      process.env.JWT_KEY,
       {
         expiresIn: "1h",
       }
@@ -164,7 +164,7 @@ const login = async (req, res, next) => {
         userId: existingUser.id,
         email: existingUser.email,
       },
-      "secret_within_secret",
+      process.env.JWT_KEY,
       {
         expiresIn: "1h",
       }
