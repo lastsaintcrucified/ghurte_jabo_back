@@ -1,6 +1,5 @@
 const multer = require("multer");
 const { v4: uuidv4 } = require('uuid');
-const path = require("path");
 
 const MIME_TYPE_MAP = {
     "image/png":"png",
@@ -12,11 +11,8 @@ const MIME_TYPE_MAP = {
         limits:700000,
         storage:multer.diskStorage({
             destination: (req,file,cb) =>{
-                if(process.env.NODE_ENV==="development"){
                 cb(null,"uploads/images");
-            }else{
-                cb(null,path.resolve("uploads/images","build"))
-            }
+            
             },
             filename:(req,file,cb)=>{
                 const ext = MIME_TYPE_MAP[file.mimetype];
