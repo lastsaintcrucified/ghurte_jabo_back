@@ -1,0 +1,10 @@
+{
+    "env":{
+        "DB_USER":"towhid313",
+        "DB_PASSWORD":"ib1eWrpeaWxIHzza",
+        "DB_NAME":"ghurte_jabo",
+        "MAPBOX_API_KEY":"pk.eyJ1IjoidGF3aGlkMzEzIiwiYSI6ImNra2Fqamw5MTAwdDAydm94aWd0OHBuZ2gifQ.vK7q9HprbQ8UqUMPSeOiZQ",
+        "JWT_KEY":"secret_within_secret",
+        "NODE_ENV":"development"
+    }
+}
