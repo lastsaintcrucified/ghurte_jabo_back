@@ -83,7 +83,7 @@ const signUp = async (req, res, next) => {
     return next(error);
   }
   const fileName = req.file.filename;
-  const basePath = `${req.protocol}://${req.get('host')}/public/images/`;
+  const basePath = `${req.protocol}://${req.get('host')}/uploads/images/`;
   const createdUser = new User({
     name,
     email,
