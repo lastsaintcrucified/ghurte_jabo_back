@@ -60,7 +60,7 @@ const getPlacesByUserId = async (req, res, next) => {
 };
 
 const createPlace = async (req, res, next) => {
-  const { title, description, address } = req.body;
+  const { title, description, address, image } = req.body;
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     console.log(errors);
@@ -74,16 +74,16 @@ const createPlace = async (req, res, next) => {
   } catch (error) {
     return next(error);
   }
-  console.log(co_ordinates);
-  const fileName = req.file.filename;
-  const basePath = `${req.protocol}://${req.get('host')}/uploads/images/`;
+  // console.log(co_ordinates);
+  // const fileName = req.file.filename;
+  // const basePath = `${req.protocol}://${req.get('host')}/uploads/images/`;
   const createdPlace = new Place({
     title,
     description,
     co_ordinates: co_ordinates,
     address,
-    image: `${basePath}${fileName}`,
-    creator:req.userData.userId,
+    image: image, //`${basePath}${fileName}`
+    creator: req.userData.userId,
   });
   let user;
   try {
@@ -162,7 +162,10 @@ const deletePlace = async (req, res, next) => {
     return next(error);
   }
   if (place.creator.id !== req.userData.userId) {
-    const error = new httpError("You are not allowed to delete this place!", 401);
+    const error = new httpError(
+      "You are not allowed to delete this place!",
+      401
+    );
     return next(error);
   }
   try {
