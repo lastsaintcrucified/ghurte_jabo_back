@@ -50,7 +50,7 @@ const getUsers = async (req, res, next) => {
 };
 
 const signUp = async (req, res, next) => {
-  const { name, email, password, image } = req.body;
+  const { name, email, password } = req.body;
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     console.log(errors);
@@ -82,13 +82,13 @@ const signUp = async (req, res, next) => {
     );
     return next(error);
   }
-  // const fileName = req.file.filename;
-  // const basePath = `${req.protocol}://${req.get('host')}/uploads/images/`;
+  const fileName = req.file.filename;
+  const basePath = `${req.protocol}://${req.get("host")}/uploads/images/`;
   const createdUser = new User({
     name,
     email,
     password: hashedPassword,
-    image, //`${basePath}${fileName}`
+    image: `${basePath}${fileName}`,
     places: [],
   });
   try {
